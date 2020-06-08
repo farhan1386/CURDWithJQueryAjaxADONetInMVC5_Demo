@@ -1,0 +1,99 @@
+﻿@model CURDWithJQeryAjaxADONetInMvc_Demo.Models.Employee
+
+@{
+    ViewBag.Title = "Home";
+}
+
+<h3 class="text-center text-uppercase">List of Employees</h3>
+<button type="button" class="btn btn-primary rounded-0 mb-2" data-toggle="modal" data-target="#myModal" onclick="clearTextBox();"><i class="fas fa-plus-circle"></i> Add New</button>
+<table id="example" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(m => m.Id)</th>
+            <th>@Html.DisplayNameFor(m => m.Name)</th>
+            <th>@Html.DisplayNameFor(m => m.Position)</th>
+            <th>@Html.DisplayNameFor(m => m.Office)</th>
+            <th>@Html.DisplayNameFor(m => m.Age)</th>
+            <th>@Html.DisplayNameFor(m => m.StartDate)</th>
+            <th>@Html.DisplayNameFor(m => m.Salary)</th>
+            <th>Action(s)</th>
+        </tr>
+    </thead>
+    <tbody class="tbody">
+    </tbody>
+</table>
+<div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title text-uppercase">New Employee</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    @Html.HiddenFor(m => m.Id)
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Name, new { @class = "label-control" })
+                                @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Position, new { @class = "label-control" })
+                                @Html.TextBoxFor(m => m.Position, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Position, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Office, new { @class = "label-control" })
+                                @Html.TextBoxFor(m => m.Office, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Office, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Age, new { @class = "label-control" })
+                                @Html.TextBoxFor(m => m.Age, new { @class = "form-control", @type = "number" })
+                                @Html.ValidationMessageFor(m => m.Age, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.StartDate, new { @class = "label-control" })
+                                @Html.TextBoxFor(m => m.StartDate, new { @class = "form-control",@type="date" })
+                                @Html.ValidationMessageFor(m => m.StartDate, "", new { @class = "text-danger" })
+                            </div>
+
+                            @*<div class="form-group">
+                                <label for="StartDate">Start Date</label>
+                                <input type="date" class="form-control" id="StartDate" placeholder="StartDate" />
+                            </div>*@
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Salary, new { @class = "label-control" })
+                                @Html.TextBoxFor(m => m.Salary, new { @class = "form-control", @type = "number" })
+                                @Html.ValidationMessageFor(m => m.Salary, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-primary rounded-0" id="btnAdd" onclick="return Add();">Submit</button>
+                <button type="button" class="btn btn-sm btn-info rounded-0" id="btnUpdate" style="display:none;" onclick="Update();">Update</button>
+                <button type="button" class="btn btn-sm btn-danger rounded-0" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Scripts/Employee.js"></script>
+}
